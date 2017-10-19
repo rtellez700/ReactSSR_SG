@@ -2,6 +2,8 @@ import React from 'react';
 import App from './App';
 import HomePage from './pages/HomePage';
 import UsersListPage, { loadData } from './pages/UsersListPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 /*
     Since using react-router config to help with SSR,
       we can no longer use the following standard structure
@@ -30,6 +32,9 @@ export default [
       {
         ...UsersListPage,
         path: '/users'
+      },
+      {
+        ...NotFoundPage
       }
     ]
   }
