@@ -1,6 +1,6 @@
 import React from 'react';
-import Home from './components/Home';
-import UsersList, { loadData } from './components/UsersList';
+import HomePage from './pages/HomePage';
+import UsersListPage, { loadData } from './pages/UsersListPage';
 /*
     Since using react-router config to help with SSR,
       we can no longer use the following standard structure
@@ -12,17 +12,19 @@ import UsersList, { loadData } from './components/UsersList';
         <Route exact path="/" component={Home} />
         <Route path="/users" component={UsersList} />
       </div>
+
+      destructuring pages' component allows for each component to have
+        their own loadData function
 */
 
 export default [
   {
+    ...HomePage,
     path: '/',
-    component: Home,
     exact: true
   },
   {
-    loadData: loadData,
-    path: '/users',
-    component: UsersList
+    ...UsersListPage,
+    path: '/users'
   }
 ];

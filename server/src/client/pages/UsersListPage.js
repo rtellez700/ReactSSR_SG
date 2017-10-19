@@ -32,7 +32,7 @@ function loadData(store) {
   return store.dispatch(fetchUsers());
 }
 
-// export as a named export. i.e., w/in {...}
-export { loadData };
-
-export default connect(mapStateToProps, { fetchUsers })(UsersList);
+export default {
+  loadData: loadData,
+  component: connect(mapStateToProps, { fetchUsers })(UsersList)
+};
