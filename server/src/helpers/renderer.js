@@ -1,9 +1,25 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import Home from '../client/components/Home';
+import { StaticRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
+import Routes from '../client/Routes';
 
-export default () => {
-  const content = renderToString(<Home />);
+/*
+  BrowserRouter can get info from address and knows exactly
+    where it is at.
+  StaticRouter, on the other hand, needs to be told all of this
+    explicitly
+*/
+export default (req, store) => {
+  const content = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.path} context={{}}>
+        <div>{renderRoutes(Routes)}</div>
+        {/* <StaticRouter><Routes />....*/}
+      </StaticRouter>
+    </Provider>
+  );
 
   return `
     <html>
