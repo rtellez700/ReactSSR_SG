@@ -20,8 +20,12 @@ import Routes from './Routes';
   + browser router does not work on the server since it needs a DOM
 */
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
-
+// const store = createStore(reducers, {}, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE,
+  applyMiddleware(thunk)
+);
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
